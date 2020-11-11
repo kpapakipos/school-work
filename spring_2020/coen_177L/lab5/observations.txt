@@ -1,0 +1,9 @@
+// Name: Keegan Papakipos 
+// Date: 5/4/20
+// Title: Lab5 – synchronization
+// Description: This file is a compilation of my notes and answers to questions for the lab.
+
+1) Note: threadSync.c didn't tell me how to run it, and I had to add an include statement for it to compile.
+It printed out greetings from each thread, with a longer delay between each print because of the 1 second sleep.
+Then a message from each thread saying it returned. One pattern I noticed was the returns were always in order, 0-9. This is different from the last lab's version, where the order was usually jumbled.
+

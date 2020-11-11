@@ -1,0 +1,12 @@
+# Name: Keegan Papakipos
+# Date: Tuesday, Apr 20 turned in
+# Title: Lab2- Programming in C and use of Systems Calls
+# Description: This file lists my observations from steps 3 and 4 of the assignemnt.
+
+Step 3: I got a segmentation fault.
+
+Step 4: 3000: Output was "Before forking." followed by what appeared to be interleaved printouts by the parent and child processes from 0 to 99. Some of the printouts were out of order- for instance, the child process printed two in a row instead of having a parent print between them.
+500: The same content was printed, but faster. I got more failures of interleaving- 3 in a row.
+5000: Slower than 3000. Again, 2 printouts in a row from child.
+
+

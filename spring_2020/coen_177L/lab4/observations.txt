@@ -1,0 +1,12 @@
+// Name: Keegan Papakipos 
+// Date: Tuesday 4/27/20 
+// Title: Lab4 – Developing multi-threaded applications
+// Description: This file is a compilation of my answers to questions and observations.
+
+1) When I run the program, it prints out a greeting message from each thread, then prints out another message when each thread returns.
+When I run it multiple times, the threads print out in different orders, and the thread numbers often are duplicates.
+I ran it twice while watching a Youtube video, and did not notice a difference in the printouts. I'll note that my laptop has good specs with lots of RAM and a good processor, which may explain this. (Actually I just realized, on second thought, I'm running the program on a linux SCU computer while playing the video on my local laptop. So of course these two do not interfere, since they're on different machines)
+Local variables are per-thread, not shared state. These variables are stored in each thread's stack.
+Same as parameter to the go() function, these variables are per-thread and stored in the stacks.
+2) The program can now output only Main thread done, or 1-20 thread greetings followed by Main thread done. This depends on which order the threads are processed in- if the main thread comes first, it will only print Main thread done. The earlier the main thread is processed, the fewer other printouts will occur.
+However, it is noteworthy that I ran this program 5+ times, and in all cases I got exactly 20 thread prints before the main thread finished. Maybe this is a coincidence, but I'm inclined to think the spawned threads are perhaps always run first.

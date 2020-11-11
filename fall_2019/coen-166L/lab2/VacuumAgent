@@ -1,0 +1,105 @@
+class VacuumAgent:
+
+	def __init__(self, state):
+		self.state = state
+	
+	def suck(self):
+		self.state[self.state[2]] = self.oppositeStatus(self.state[self.state[2]])
+		return 'Suck'
+
+	def left(self):
+		self.state[2] = 0
+
+	def right(self):
+		self.state[2] = 1
+
+	def moveToOtherSquare(self):
+		if self.state[2] == 0:
+			self.right()
+			return 'Right'
+		elif self.state[2] == 1:
+			self.left()
+			return 'Left'
+		else:
+			raise Error('Agent is in an impossible square. Must be 0 or 1.')
+
+	def oppositeStatus(self, stat):
+		if stat == 'Clean':
+			return 'Dirty'
+		elif stat == 'Dirty':
+			return 'Clean'
+		else:
+			raise Error('Invalid status. Must be Clean or Dirty.')
+	
+	def run(self, actionsTaken):
+		while self.state[0] == 'Dirty' or self.state[1] == 'Dirty':
+			if self.state[self.state[2]] == 'Dirty':
+				actionsTaken.append(self.suck())
+			else:
+				actionsTaken.append(self.moveToOtherSquare())
+		return len(actionsTaken) 
+
+def testCase(state, actionSeq):
+	agent = VacuumAgent(state)
+	totalCost = agent.run(actionSeq)
+	return totalCost
+
+def main():
+	actionSeq = []
+	cost = testCase(['Clean', 'Clean', 0], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == [] and cost == 0)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Clean', 'Clean', 1], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == [] and cost == 0)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Clean', 'Dirty', 0], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == ['Right', 'Suck'] and cost == 2)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Clean', 'Dirty', 1], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == ['Suck'] and cost == 1)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Dirty', 'Clean', 0], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == ['Suck'] and cost == 1)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Dirty', 'Clean', 1], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == ['Left', 'Suck'] and cost == 2)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Dirty', 'Dirty', 0], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == ['Suck', 'Right', 'Suck'] and cost == 3)
+	print('Output correct:', outputCorrect)
+
+	actionSeq = []
+	cost = testCase(['Dirty', 'Dirty', 1], actionSeq)
+	output = 'Action list: ' + str(actionSeq) + ', Total cost: ' + str(cost)
+	print(output)
+	outputCorrect = (actionSeq == ['Suck', 'Left', 'Suck'] and cost == 3)
+	print('Output correct:', outputCorrect)
+
+if __name__ == '__main__':
+	main()

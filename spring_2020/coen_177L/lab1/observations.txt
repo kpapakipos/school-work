@@ -1,0 +1,21 @@
+# Name: Keegan Papakipos
+# Date: Tuesday 2:15
+# Title: Lab1 – Unix/Linux Commands and Basic Shell Programming
+# Description: This text file is a collection of my observations on key lines of the script.
+
+I will call the line beginning with "$Sample shell program" line 1. "#!/bin/sh" is line 2, and so on.
+
+Line 3 prints out the name of the program file, accessed through $0.
+Line 4 gets the result of an ls call, and pipes it to the input of wc -l (returning the number of lines). I'm not exactly clear why, but wc -l then returns the number of files.
+Line 5 prints the line counts of all files in the current directory. If they are folders rather than files, the program complains.
+Next, the program prints several environment variables:
+    The HOME directory
+    USER name
+    PATH
+    The working directory
+    $$ is the process ID (PID)
+Then, depending on the logged-in username, the script either prints how many users are logged on and exits, or prompts the user to calculate the areas of an arbitrary number of rectangles (changed to circles in script 3).
+
+In the final version of the script, where we calculate circles instead of rectangles, I used the command: 
+    `echo "3.1416 * $radius * $radius" | bc`
+This line uses the pipe operator to send the output of the echo statement (the string "3.1416 * $radius * $radius") to the input of bc. bc then calculates the result.

@@ -1,0 +1,31 @@
+// Name: Keegan Papakipos 
+// Date: Tuesday (the day you have lab) 
+// Title: Lab3 – Pthreads and IPC- Pipes
+// Description: This file compiles my observations about the lab
+
+Step 6: Output:
+Hello from thread -895793408 with iteration 2
+Hello from thread -887400704 with iteration 1
+Hello from thread -912578816 with iteration 4
+Hello from thread -904186112 with iteration 4
+Hello from thread -920971520 with iteration 5
+Hello from thread -929364224 with iteration 6
+Hello from thread -937756928 with iteration 7
+Hello from thread -946149632 with iteration 8
+Hello from thread -962935040 with iteration 0
+Hello from thread -954542336 with iteration 9
+Thread 0 returned
+Thread 1 returned
+Thread 2 returned
+Thread 3 returned
+Thread 4 returned
+Thread 5 returned
+Thread 6 returned
+Thread 7 returned
+Thread 8 returned
+Thread 9 returned
+Main thread done.
+
+Threads can print out the same values of i because the go function takes in a memory location- so that location could be updated, or not, before the print statement inside go. This is a race condition.
+
+Step 7: The fix I used was making an array containing the values 0-9, then passing references to the appropriate array locations. These memory locations don't change, so different threads will always have the correct i values.

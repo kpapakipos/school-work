@@ -1,0 +1,21 @@
+// Name: Keegan Papakipos
+// Date: 5/11/20
+// Title: Lab6 – Minix operating system
+// Description: This is a description of the steps I took to set up a Minix system image,
+// run it using vmware on the ECC Linux computers, modify the boot message, and rebuild.
+
+1) Follow the instructions here- http://wiki.helpme.engr.scu.edu/index.php/NX_Workstation
+2) Once you've established a virtual desktop, open a terminal and run commands:
+	setup vmware
+	minix-get-image
+	vmware &
+3) Enter "root" as the username for the Minix VM.
+4) Run command "passwd". Choose a password, enter it twice.
+5) Run command "tcpd ftp /usr/bin/in.ftpd &".
+6) Run command "ifconfig". Read the IP address and remember it.
+7) On your host machine (the lab computer you're using remotely), run command "ftp <IP address>"
+Note: Whenever you change files in the VM, do not work on them directly inside the VM. Use FTP to get them on your host machine, change them there, then send them back to the VM. This helps avoid corruption.
+Note: When done editing a file, return to /usr/src and run "make world", then "reboot".
+8) Try to find the file that prints out the copyright info after reboots. I did this with the command "find . | xargs grep "Copyright 2010" ..".
+9) Edit the file (/usr/src/kernel/main.c) to add a custom part to the copyright message. I added "Keegan wuz here :)".
+10) Return to /usr/src and do "make world", then "reboot". Your modified message should show up!
